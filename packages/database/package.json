@@ -1,0 +1,30 @@
+{
+  "name": "@nishabdha/database",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:studio": "prisma studio",
+    "db:seed": "tsx src/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.12.0"
+  },
+  "devDependencies": {
+    "@nishabdha/typescript-config": "workspace:*",
+    "@types/node": "^20.11.0",
+    "prisma": "^5.12.0",
+    "tsx": "^4.7.2",
+    "typescript": "^5.4.5"
+  },
+  "prisma": {
+    "seed": "tsx src/seed.ts"
+  }
+}

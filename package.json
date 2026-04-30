@@ -1,0 +1,27 @@
+{
+  "name": "nishabdha-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Nishabdha Backend Monorepo",
+  "packageManager": "pnpm@9.0.0",
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "type-check": "turbo run type-check",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "db:generate": "pnpm --filter database db:generate",
+    "db:migrate": "pnpm --filter database db:migrate",
+    "db:studio": "pnpm --filter database db:studio",
+    "db:seed": "pnpm --filter database db:seed"
+  },
+  "devDependencies": {
+    "tsx": "^4.21.0",
+    "turbo": "^1.13.0",
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  }
+}

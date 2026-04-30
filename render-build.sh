@@ -14,7 +14,7 @@ pnpm install --frozen-lockfile
 # Generate Prisma client
 echo "Generating Prisma client..."
 cd packages/database
-pnpm exec prisma generate
+npx prisma generate
 cd ../..
 
 # Build all packages
@@ -24,7 +24,7 @@ pnpm build
 # Run database migrations
 echo "Running database migrations..."
 cd packages/database
-pnpm exec prisma migrate deploy
+npx prisma migrate deploy
 cd ../..
 
 echo "Build complete!"

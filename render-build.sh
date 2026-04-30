@@ -26,7 +26,18 @@ pnpm --filter @nishabdha/api build
 # Run database migrations
 echo "Running database migrations..."
 cd packages/database
-pnpm exec prisma migrate deploy
+
+# Check if we should skip migrations
+if [ "$SKIP_MIGRATIONS" = "true" ]; then
+  echo "Skipping migrations (SKIP_MIGRATIONS=true)"
+elif [ -n "$DIRECT_DATABASE_URL" ]; then
+  echo "Using DIRECT_DATABASE_URL for migrations..."
+  DATABASE_URL="$DIRECT_DATABASE_URL" pnpm exec prisma migrate deploy
+else
+  echo "Warning: No DIRECT_DATABASE_URL set, skipping migrations"
+  echo "To run migrations, set DIRECT_DATABASE_URL with direct connection (port 5432)"
+fi
+
 cd ../..
 
 # Prune devDependencies after build to reduce deployment size

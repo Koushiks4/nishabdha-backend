@@ -98,4 +98,4 @@ router.get('/me', requireAdminAuth, async (req: Request, res: Response): Promise
   });
 });
 
-export default router;
+export default router as import("express").Router;

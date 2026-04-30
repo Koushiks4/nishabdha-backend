@@ -132,4 +132,4 @@ router.get('/:id', requireAdminAuth, async (req: Request, res: Response, next: N
   }
 });
 
-export default router;
+export default router as import("express").Router;

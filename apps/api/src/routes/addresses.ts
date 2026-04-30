@@ -185,4 +185,4 @@ router.delete('/:id', requireCustomerAuth, async (req: Request, res: Response, n
   }
 });
 
-export default router;
+export default router as import("express").Router;

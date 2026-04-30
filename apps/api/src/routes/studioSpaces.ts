@@ -16,7 +16,7 @@ const studioSpaceSchema = z.object({
 });
 
 // GET /api/studio-spaces - Get all studio spaces (admin only)
-router.get('/', requireAdminAuth, async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+router.get('/', requireAdminAuth, async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const spaces = await prisma.studioSpace.findMany({
       orderBy: { name: 'asc' },
@@ -37,7 +37,14 @@ router.post('/', requireAdminAuth, async (req: Request, res: Response, next: Nex
     const validatedData = studioSpaceSchema.parse(req.body);
 
     const space = await prisma.studioSpace.create({
-      data: validatedData,
+      data: {
+        name: validatedData.name,
+        slug: validatedData.slug,
+        description: validatedData.description || '',
+        features: validatedData.features || [],
+        imageUrl: validatedData.imageUrl || null,
+        isActive: validatedData.isActive ?? true,
+      },
     });
 
     res.status(201).json({
@@ -63,9 +70,17 @@ router.patch('/:id', requireAdminAuth, async (req: Request, res: Response, next:
     const { id } = req.params;
     const validatedData = studioSpaceSchema.partial().parse(req.body);
 
+    const updateData: any = {};
+    if (validatedData.name !== undefined) updateData.name = validatedData.name;
+    if (validatedData.slug !== undefined) updateData.slug = validatedData.slug;
+    if (validatedData.description !== undefined) updateData.description = validatedData.description || '';
+    if (validatedData.features !== undefined) updateData.features = validatedData.features || [];
+    if (validatedData.imageUrl !== undefined) updateData.imageUrl = validatedData.imageUrl || null;
+    if (validatedData.isActive !== undefined) updateData.isActive = validatedData.isActive;
+
     const space = await prisma.studioSpace.update({
       where: { id },
-      data: validatedData,
+      data: updateData,
     });
 
     res.json({
@@ -103,4 +118,4 @@ router.delete('/:id', requireAdminAuth, async (req: Request, res: Response, next
   }
 });
 
-export default router;
+export default router as import("express").Router;

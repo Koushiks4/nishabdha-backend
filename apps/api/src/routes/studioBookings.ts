@@ -17,7 +17,7 @@ const createBookingSchema = z.object({
 });
 
 // GET /api/studio-bookings/spaces - Get available studio spaces (public)
-router.get('/spaces', async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+router.get('/spaces', async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const spaces = await prisma.studioSpace.findMany({
       where: { isActive: true },
@@ -188,4 +188,4 @@ router.patch('/:id', requireAdminAuth, async (req: Request, res: Response, next:
   }
 });
 
-export default router;
+export default router as import("express").Router;

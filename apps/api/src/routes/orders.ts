@@ -686,4 +686,4 @@ router.post('/:orderNumber/verify-payment', requireCustomerAuth, async (req: Req
   }
 });
 
-export default router;
+export default router as import("express").Router;

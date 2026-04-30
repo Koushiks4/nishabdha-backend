@@ -86,7 +86,7 @@ router.post('/verify-otp', authRateLimit, async (req: Request, res: Response, ne
     // Generate JWT token
     const jwtToken = signToken({
       customerId: customer.id,
-      email: customer.email!,
+      email: customer.email ?? undefined,
       type: 'customer',
     });
 
@@ -121,4 +121,4 @@ router.get('/me', requireCustomerAuth, async (req: Request, res: Response) => {
   });
 });
 
-export default router;
+export default router as import("express").Router;

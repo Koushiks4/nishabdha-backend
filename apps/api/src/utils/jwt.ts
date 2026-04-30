@@ -3,7 +3,8 @@ import { config } from '../config';
 
 export interface CustomerTokenPayload {
   customerId: string;
-  phone: string;
+  phone?: string;
+  email?: string;
   type: 'customer';
 }
 

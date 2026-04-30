@@ -35,7 +35,7 @@ async function addVariantsToProducts() {
         {
           name: 'Medium (18x24)',
           sku: `${product.slug}-md-unfr`.toUpperCase(),
-          price: (parseFloat(product.basePrice) * 1.5).toFixed(0),
+          price: parseFloat(product.basePrice.toString()) * 1.5,
           stockQuantity: 8,
           size: '18x24',
           material: 'Wood Wool Board',
@@ -45,7 +45,7 @@ async function addVariantsToProducts() {
         {
           name: 'Large (24x36)',
           sku: `${product.slug}-lg-fr`.toUpperCase(),
-          price: (parseFloat(product.basePrice) * 2).toFixed(0),
+          price: parseFloat(product.basePrice.toString()) * 2,
           stockQuantity: 5,
           size: '24x36',
           material: 'PET Board',

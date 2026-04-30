@@ -8,7 +8,7 @@ import { config } from '../config';
 const LOG_DIR = path.join(__dirname, '../../logs');
 
 // Ensure log directory exists
-if (config.NODE_ENV === 'production' && !fs.existsSync(LOG_DIR)) {
+if (config.nodeEnv === 'production' && !fs.existsSync(LOG_DIR)) {
   fs.mkdirSync(LOG_DIR, { recursive: true });
 }
 
@@ -29,11 +29,11 @@ const devFormat = winston.format.combine(
 );
 
 export const logger = winston.createLogger({
-  level: config.NODE_ENV === 'production' ? 'info' : 'debug',
-  format: config.NODE_ENV === 'production' ? logFormat : devFormat,
+  level: config.nodeEnv === 'production' ? 'info' : 'debug',
+  format: config.nodeEnv === 'production' ? logFormat : devFormat,
   transports: [
     new winston.transports.Console(),
-    ...(config.NODE_ENV === 'production'
+    ...(config.nodeEnv === 'production'
       ? [
           new DailyRotateFile({
             filename: path.join(LOG_DIR, 'error-%DATE%.log'),
@@ -53,7 +53,7 @@ export const logger = winston.createLogger({
   ],
   exceptionHandlers: [
     new winston.transports.Console(),
-    ...(config.NODE_ENV === 'production'
+    ...(config.nodeEnv === 'production'
       ? [
           new DailyRotateFile({
             filename: path.join(LOG_DIR, 'exceptions-%DATE%.log'),
@@ -66,7 +66,7 @@ export const logger = winston.createLogger({
   ],
   rejectionHandlers: [
     new winston.transports.Console(),
-    ...(config.NODE_ENV === 'production'
+    ...(config.nodeEnv === 'production'
       ? [
           new DailyRotateFile({
             filename: path.join(LOG_DIR, 'rejections-%DATE%.log'),

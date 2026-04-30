@@ -314,4 +314,4 @@ router.delete('/:id', requireAdminAuth, async (req: Request, res: Response, next
   }
 });
 
-export default router;
+export default router as import("express").Router;

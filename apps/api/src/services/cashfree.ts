@@ -45,9 +45,10 @@ export async function createPaymentOrder(params: CreatePaymentOrderParams): Prom
   orderRequest.orderCurrency = 'INR';
   orderRequest.customerDetails = customerDetails;
   orderRequest.orderMeta = {
-    return_url: params.returnUrl,
-    notify_url: `${config.apiUrl}/api/orders/cashfree-webhook`
-  };
+    returnUrl: params.returnUrl,
+    notifyUrl: `${config.apiUrl}/api/orders/cashfree-webhook`,
+    paymentMethods: undefined
+  } as any;
 
   const apiInstance = new CFPaymentGateway();
   const result = await apiInstance.orderCreate(cfConfig, orderRequest);

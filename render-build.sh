@@ -17,9 +17,11 @@ cd packages/database
 npx prisma@5.22.0 generate
 cd ../..
 
-# Build all packages
-echo "Building packages..."
-pnpm build
+# Build backend API and dependencies only (exclude admin app)
+echo "Building backend packages..."
+pnpm --filter @nishabdha/types build
+pnpm --filter @nishabdha/database build
+pnpm --filter api build
 
 # Run database migrations
 echo "Running database migrations..."

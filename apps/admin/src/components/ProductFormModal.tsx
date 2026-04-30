@@ -146,7 +146,7 @@ export function ProductFormModal({ product, onClose }: ProductFormModalProps) {
         ...formData,
         basePrice: parseFloat(formData.basePrice),
         compareAtPrice: formData.compareAtPrice ? parseFloat(formData.compareAtPrice) : null,
-        tags: formData.tags.split(',').map(t => t.trim()).filter(Boolean),
+        tags: formData.tags.split(',').map((t: string) => t.trim()).filter(Boolean),
         images: allImages,
         variants: variants.map(v => ({
           ...(v.id && { id: v.id }),

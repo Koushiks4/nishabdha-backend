@@ -1,0 +1,42 @@
+{
+  "name": "@nishabdha/api",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "type-check": "tsc --noEmit",
+    "seed:products": "tsx src/scripts/seedProducts.ts",
+    "add:variants": "tsx src/scripts/addVariantsToProducts.ts"
+  },
+  "dependencies": {
+    "@nishabdha/database": "workspace:*",
+    "@nishabdha/types": "workspace:*",
+    "@supabase/supabase-js": "^2.105.0",
+    "axios": "^1.6.5",
+    "cashfree-pg-sdk-nodejs": "^2.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.2",
+    "express-rate-limit": "^8.4.1",
+    "helmet": "^7.1.0",
+    "ioredis": "^5.10.1",
+    "jsonwebtoken": "^9.0.3",
+    "rate-limit-redis": "^4.3.1",
+    "winston": "^3.11.0",
+    "winston-daily-rotate-file": "^4.7.1",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@nishabdha/eslint-config": "workspace:*",
+    "@nishabdha/typescript-config": "workspace:*",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^20.11.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.5"
+  }
+}

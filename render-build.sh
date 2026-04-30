@@ -3,9 +3,9 @@ set -e
 
 echo "=== Nishabdha Backend - Render Build Script ==="
 
-# Install pnpm
-echo "Installing pnpm..."
-npm install -g pnpm@9.0.0
+# Install pnpm and turbo globally
+echo "Installing build tools..."
+npm install -g pnpm@9.0.0 turbo@1.13.0
 
 # Install dependencies
 echo "Installing dependencies..."
